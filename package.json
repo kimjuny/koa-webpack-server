@@ -1,8 +1,7 @@
 {
   "name": "koa-webpack-server",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "koa2 webpack hmr development server",
-  "git": "https://github.com/kimjuny/koa-webpack-server",
   "keywords": [
     "koa",
     "webpack",
@@ -23,5 +22,7 @@
     "webpack-hot-middleware": "^2.18.2"
   },
   "author": "Eric Kim",
+  "git": "https://github.com/kimjuny/koa-webpack-server.git",
+  "repository": "kimjuny/koa-webpack-server",
   "license": "MIT"
 }
