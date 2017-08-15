@@ -38,8 +38,9 @@ const options = {
 };
 
 webpackServer(app, options).then(({ middlewares }) => {
-  // Middlewares are all hot-loaded.
-  // You can make any changes from middlewares and it will automatically re-webpacking and reload so that you don't have to
+  // hot-middlewares: you may try making any changes from middlewares, 
+  // it will automatically rebuild and reload,
+  // so that you don't have to reboot your server to see the changes.
   const { logger, render } = middlewares;
 
   app.use(logger);
