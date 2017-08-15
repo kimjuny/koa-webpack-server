@@ -7,7 +7,7 @@ This package is still on early stage, APIs may have break changes in the near fu
 ### Install
 
 ```
-yarn add koa-webpack-server
+yarn add koa-webpack-server --dev
 ```
 
 ### Usage
