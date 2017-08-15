@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const logger = async (ctx, next) => {
   const start = new Date();
   await next();
@@ -9,6 +7,7 @@ export const logger = async (ctx, next) => {
 };
 
 export const renderer = async (ctx, next) => {
+  ctx.set('Content-Type', 'text/html');
   ctx.body = `
     <!doctype html>
     <html>
@@ -16,7 +15,7 @@ export const renderer = async (ctx, next) => {
         <title>client-and-server</title>
       </head>
       <body>
-        <div>Hello World!</div>
+        <div>Hello World.</div>
       </body>
     </html>
   `;

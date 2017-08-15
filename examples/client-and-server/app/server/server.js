@@ -1,25 +1,24 @@
 require('babel-polyfill');
 const Koa = require('koa');
-const koaWebpack = require('koa-webpack');
 const webpack = require('webpack');
-const webpackServer = require('../../../../src/index');
+// const webpackServer = require('koa-webpack-server');
+const webpackServer = require('../../../../index');
 const configs = require('../../webpack.config');
-
-console.log('webpack now compiling...');
-const compiler = webpack(configs);
 
 const app = new Koa();
 
-app.use(koaWebpack({
-  compiler,
+const options = {
+  compilers: webpack(configs),
   dev: {
     noInfo: false,
     quiet: true,
-    publicPath: '/build/client/',
+    serverSideRender: true,
   },
-}));
+};
 
-webpackServer(compiler).then(({ logger, renderer }) => {
+webpackServer(app, options).then(({ middlewares }) => {
+  const { logger, renderer } = middlewares;
+
   // apply middlewares
   app.use(logger);
   app.use(renderer);

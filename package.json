@@ -1,8 +1,8 @@
 {
   "name": "koa-webpack-server",
-  "version": "0.1.0",
+  "version": "0.1.6",
   "description": "koa2 webpack hmr development server",
-  "git": "https://github.com/kimjuny/koa-webpack-server.git",
+  "git": "https://github.com/kimjuny/koa-webpack-server",
   "keywords": [
     "koa",
     "webpack",
@@ -11,9 +11,16 @@
     "react",
     "vue"
   ],
-  "main": "src/",
+  "main": "dist/",
+  "scripts": {
+    "build": "npm run clean && webpack --colors --progress --config webpack.config.js",
+    "clean": "rm -rf dist"
+  },
   "devDependencies": {
-    "require-from-string": "^1.2.1"
+    "require-from-string": "^1.2.1",
+    "webpack": "^3.5.4",
+    "webpack-dev-middleware": "^1.12.0",
+    "webpack-hot-middleware": "^2.18.2"
   },
   "author": "Eric Kim",
   "license": "MIT"
