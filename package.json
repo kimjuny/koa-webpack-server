@@ -1,0 +1,20 @@
+{
+  "name": "koa-webpack-server",
+  "version": "0.1.0",
+  "description": "koa2 webpack hmr development server",
+  "git": "https://github.com/kimjuny/koa-webpack-server.git",
+  "keywords": [
+    "koa",
+    "webpack",
+    "universal",
+    "isomorphic",
+    "react",
+    "vue"
+  ],
+  "main": "src/",
+  "devDependencies": {
+    "require-from-string": "^1.2.1"
+  },
+  "author": "Eric Kim",
+  "license": "MIT"
+}
