@@ -1,6 +1,6 @@
 {
   "name": "koa-webpack-server",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "koa2 webpack hmr development server",
   "keywords": [
     "koa",
