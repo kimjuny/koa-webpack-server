@@ -1,30 +1,42 @@
+const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
+
+const externals = fs
+  .readdirSync(path.resolve(__dirname, './node_modules'))
+  .filter(x => !/\.bin/.test(x))
+  .reduce((externals, mod) => {
+    externals[mod] = `commonjs ${mod}`
+    return externals
+  }, {});
+
+externals['react-dom/server'] = 'commonjs react-dom/server';
 
 module.exports = [
   {
     name: 'client',
+    target: 'web',
     entry: [
+      'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=false',
       path.resolve(__dirname, './app/client/index.js'),
     ],
     output: {
       filename: 'client.js',
-      path: path.resolve(__dirname, './build/client'),
-      publicPath: '/build/client/',
+      publicPath: '/static/',
     },
     module: {
       rules: [
         {
           test: /.js$/,
+          exclude: /node_modules/,
           loader: 'babel-loader',
-          options: {
-            presets: [
-              'react', 'es2015', 'stage-0',
-            ],
-          },
         },
       ],
     },
+    plugins: [
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.NoEmitOnErrorsPlugin(),
+    ],
   }, {
     name: 'server',
     target: 'node',
@@ -42,17 +54,10 @@ module.exports = [
         {
           test: /.js$/,
           loader: 'babel-loader',
-          options: {
-            presets: [
-              'react', 'es2015', 'stage-0',
-            ],
-            plugins: [
-              'transform-async-to-generator',
-            ],
-          },
         },
       ],
     },
+    externals,
     plugins: [
     ],
   }

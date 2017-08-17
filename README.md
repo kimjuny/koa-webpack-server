@@ -4,7 +4,7 @@
 
 Koa-Webpack-Server is all-in-one environment for koa2 and webpack2/3 development. This package contains three components: a koa-middleware for [webpack-dev-middleware](https://github.com/webpack/webpack-dev-middleware)、a koa-middleware for [webpack-hot-middleware](https://github.com/glenjamin/webpack-hot-middleware)、a promise-based entry for hot koa-middleware development(something like [webpack-hot-server-middleware](https://github.com/60frames/webpack-hot-server-middleware) yet more powerful).
 
-This package is usually used to build a universal/isomorphic SPA application(react、vue、angular) which uses koa and webpack as setback, making universal/isomorphic development super easy.
+This package is usually used to build a universal/isomorphic SPA applications(React、Vue、Angular) using koa and webpack as setback, making universal/isomorphic web-app development super easy.
 
 For complete examples please refer to:
 
@@ -12,20 +12,20 @@ For complete examples please refer to:
 
 > Noted: This package is still on early stage.
 
-### Install
+## Install
 
 ```
 yarn add koa-webpack-server --dev
 ```
 
-### Usage
+## Usage
 
 server.js
 
 ```javascript
 const Koa = require('koa');
 const webpack = require('webpack');
-const webpackServer = require('koa-webpack-server');
+const { webpackServer } = require('koa-webpack-server');
 const configs = require('../config/webpack.dev.config');
 // 👆 array of webpack configurations(client and server)
 
@@ -90,9 +90,9 @@ export render;
 
 For usage detail please refer to [basic examples](https://github.com/kimjuny/koa-webpack-server/tree/master/examples).
 
-### API
+## API
 
-#### webpackServer: {Function(app: Koa, options: Object):Promise}
+### 1. webpackServer: {Function(app: Koa, options: Object):Promise}
 
 #### options: Object
 
@@ -110,6 +110,17 @@ const options = {
 
 [webpack-dev-middleware](https://github.com/webpack/webpack-dev-middleware) options.
 
+When you set `serverSideRender: true`, webpackStats is accessible from `ctx.state.webpackStats`.
+
+```javascript
+app.use(async (ctx, next) => {
+  const assetsByChunkName = ctx.state.webpackStats.toJson().assetsByChunkName;
+  // do something with assetsByChunkName
+})
+```
+
+For more information please refer to: [server-side-rendering](https://github.com/webpack/webpack-dev-middleware#server-side-rendering).
+
 #### hot: Object
 
 [webpack-hot-middleware](https://github.com/glenjamin/webpack-hot-middleware) options.
@@ -122,8 +133,12 @@ const server = {
 }
 ```
 
-### License
+### 2. findCompiler: {Function(compiler: Compiler || MultiCompiler, name: String): Compiler}
+
+### 3. findStats: {Function(stats: Stats || MultiStats, name: String): Stats}
+
+## License
 
 MIT
 
-### Contributing
+## Contributing

@@ -1,3 +1,8 @@
+import React from 'react';
+import { renderToString } from 'react-dom/server';
+import App from '../client/App';
+import _ from 'lodash';
+
 export const logger = async (ctx, next) => {
   const start = new Date();
   await next();
@@ -6,7 +11,8 @@ export const logger = async (ctx, next) => {
   console.log(`[${ctx.method}][${ms}ms] ${ctx.url}`);
 };
 
-export const renderer = async (ctx, next) => {
+export const render = async (ctx, next) => {
+  const content = renderToString(<App />);
   ctx.set('Content-Type', 'text/html');
   ctx.body = `
     <!doctype html>
@@ -15,7 +21,8 @@ export const renderer = async (ctx, next) => {
         <title>client-and-server</title>
       </head>
       <body>
-        <div>Hello World.</div>
+        <div id="root">${content}</div>
+        <script src="/static/client.js" defer="defer"></script>
       </body>
     </html>
   `;

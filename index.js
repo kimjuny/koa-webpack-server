@@ -7,20 +7,20 @@ const hotMiddleware = require('./src/hot');
 let init = false;
 let cache;
 
-const findServerCompiler = (compilers, serverCompiler) => {
-  const find = (compilers, serverCompiler) => {
+const findCompiler = (compilers, name) => {
+  const find = (compilers, name) => {
     if (compilers && Array.isArray(compilers.compilers)) {
-      return compilers.compilers.find(compiler => compiler.name === serverCompiler);
-    } else if (compilers && compilers.name === serverCompiler) {
+      return compilers.compilers.find(compiler => compiler.name === name);
+    } else if (compilers && compilers.name === name) {
       return compilers;
     } else {
       return null;
     }
   };
-  const compiler = find(compilers, serverCompiler);
+  const compiler = find(compilers, name);
 
   if (!compiler) {
-    throw new Error(`No webpack compiler found named '${serverCompiler}', please check your webpack configuration.`)
+    throw new Error(`No webpack compiler found named '${serverName}', please check your webpack configuration.`)
   } else {
     return compiler;
   }
@@ -34,7 +34,7 @@ const findServerCompiler = (compilers, serverCompiler) => {
 const listen = (compilers, serverName) => {
   return new Promise((resolve, reject) => {
     compilers.plugin('done' , () => {
-      const serverCompiler = findServerCompiler(compilers, serverName);
+      const serverCompiler = findCompiler(compilers, serverName);
       const middlewares = handleChanges(serverCompiler);
       resolve({ middlewares });
     });
@@ -75,16 +75,21 @@ const handleChanges = (compiler) => {
   return middlewares;
 }
 
-const webpackServer = (app, options) => {
-  const { compilers, serverName, dev, hot, server } = options;
+exports.findCompiler = findCompiler;
+
+exports.webpackServer = (app, options) => {
+  const { compilers, serverName, clientName, dev, hot, server } = options;
 
   const serverNameOption = serverName || 'server';
+  const clientNameOption = clientName || 'client';
   const devOptions = dev || {};
   const hotOptions = hot || {};
   const serverOptions = server;
 
+  const serverCompiler = findCompiler(compilers, clientNameOption);
+
   app.use(devMiddleware(compilers, devOptions));
-  app.use(hotMiddleware(compilers, devOptions));
+  app.use(hotMiddleware(serverCompiler, hotOptions));
 
   if (!serverOptions || !serverOptions.use) {
     return new Promise((resolve, reject) => {
@@ -96,5 +101,3 @@ const webpackServer = (app, options) => {
     });
   }
 };
-
-module.exports = webpackServer;

@@ -1,6 +1,6 @@
 {
   "name": "koa-webpack-server",
-  "version": "0.1.8",
+  "version": "0.2.0",
   "description": "koa2 webpack hmr development server",
   "keywords": [
     "koa",
@@ -10,14 +10,16 @@
     "react",
     "vue"
   ],
-  "main": "dist/",
+  "main": "./index.js",
   "scripts": {
     "build": "npm run clean && webpack --colors --progress --config webpack.config.js",
     "clean": "rm -rf dist"
   },
   "devDependencies": {
+    "webpack": "^3.5.4"
+  },
+  "dependencies": {
     "require-from-string": "^1.2.1",
-    "webpack": "^3.5.4",
     "webpack-dev-middleware": "^1.12.0",
     "webpack-hot-middleware": "^2.18.2"
   },
