@@ -9,7 +9,7 @@ cache:
 script:
   - yarn
   - cd examples/client-and-server && yarn
-  - cd ...
+  - cd ../../
   - yarn test
   - yarn codecov
 notifications:
