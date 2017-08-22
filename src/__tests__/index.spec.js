@@ -1,7 +1,7 @@
 const Koa = require('koa');
 const webpack = require('webpack');
-const { webpackServer, findCompiler } = require('../index.js');
-const configs = require('../../examples/client-and-server/webpack.config.js');
+const { webpackServer, findCompiler, findStats } = require('..');
+const configs = require('../../examples/client-and-server/webpack.config');
 
 describe('src/index.js test suite', () => {
   it('should start correctly', () => {
@@ -19,8 +19,47 @@ describe('src/index.js test suite', () => {
       },
     };
 
-    const defer = webpackServer(new Koa(), options);
+    expect(webpackServer(new Koa(), options)).resolves.toBeDefined();
+  });
 
-    expect(defer).resolves.toBeDefined();
+  it('should/shouldnt find compiler.', () => {
+    const compilers = webpack(configs);
+
+    const wrapper = () => {
+      findCompiler(compilers, 'no such compiler');
+    };
+    
+    expect(wrapper)
+      .toThrow(`No webpack compiler found named 'no such compiler', please check your configuration.`);
+    
+    expect(findCompiler(compilers, 'server')).toBeDefined();
+  });
+
+  it('should throw an error that no stats found', () => {
+    const wrapper = new Promise((resolve, reject) => {
+      try {
+        webpack(configs, (err, stats) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(stats);
+          }
+        });
+      } catch (err) {
+        reject(err);
+      }
+    });
+
+    return wrapper.then((stats) => {
+      const falseName = 'a false name';
+      const name = 'client';
+
+      expect(findStats(stats, name)).toBeDefined();
+      expect(() => {
+        findStats(stats, falseName);
+      }).toThrow(`No webpack stats found named '${falseName}', please check your configuration.`);
+    }).then(() => {
+      // TODO: How to kill webpack-dev-server and webpack-hot-server here?
+    });
   });
 });

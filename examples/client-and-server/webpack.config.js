@@ -17,6 +17,7 @@ module.exports = [
     name: 'client',
     target: 'web',
     entry: [
+      'babel-polyfill',
       'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=false',
       path.resolve(__dirname, './app/client/index.js'),
     ],
@@ -41,6 +42,7 @@ module.exports = [
     name: 'server',
     target: 'node',
     entry: [
+      'babel-polyfill',
       path.resolve(__dirname, './app/server/middlewares.js'),
     ],
     output: {

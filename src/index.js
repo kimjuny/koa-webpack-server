@@ -8,22 +8,30 @@ let init = false;
 let cache;
 
 const findCompiler = (compilers, name) => {
-  const find = (compilers, name) => {
-    if (compilers && Array.isArray(compilers.compilers)) {
-      return compilers.compilers.find(compiler => compiler.name === name);
-    } else if (compilers && compilers.name === name) {
-      return compilers;
-    } else {
-      return null;
-    }
-  };
-  const compiler = find(compilers, name);
-
-  if (!compiler) {
-    throw new Error(`No webpack compiler found named '${serverName}', please check your webpack configuration.`)
-  } else {
-    return compiler;
+  let result = null;
+  if (compilers && Array.isArray(compilers.compilers)) {
+    result = compilers.compilers.find(compiler => compiler.name === name);
+  } else if (compilers && compilers.name === name) {
+    result = compilers;
   }
+
+  if (!result) {
+    throw new Error(`No webpack compiler found named '${name}', please check your configuration.`)
+  }
+  return result;
+};
+
+const findStats = (stats, name) => {
+  let result = null;
+  if (stats && Array.isArray(stats.stats)) {
+    result = stats.stats.find(node => node.compilation.name === name);
+  } else if (stats && stats.compilation.name === name) {
+    result = stats;
+  }
+  if (!result) {
+    throw new Error(`No webpack stats found named '${name}', please check your configuration.`);
+  }
+  return result;
 };
 
 /**
@@ -76,6 +84,8 @@ const handleChanges = (compiler) => {
 }
 
 exports.findCompiler = findCompiler;
+
+exports.findStats = findStats;
 
 exports.webpackServer = (app, options) => {
   const { compilers, serverName, clientName, dev, hot, server } = options;

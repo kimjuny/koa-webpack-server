@@ -1,6 +1,9 @@
 {
   "notify": true,
   "browser": false,
+  "transform": {
+    "^.+\\.js?$": "babel-jest"
+  },
   "testEnvironment": "node",
   "collectCoverage": true,
   "coveragePathIgnorePatterns": [

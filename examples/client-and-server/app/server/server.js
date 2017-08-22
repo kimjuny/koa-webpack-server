@@ -1,4 +1,3 @@
-require('babel-polyfill');
 const Koa = require('koa');
 const webpack = require('webpack');
 // const { webpackServer, findCompiler } = require('koa-webpack-server');
