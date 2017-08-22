@@ -2,7 +2,7 @@ require('babel-polyfill');
 const Koa = require('koa');
 const webpack = require('webpack');
 // const { webpackServer, findCompiler } = require('koa-webpack-server');
-const { webpackServer, findCompiler } = require('../../../../index');
+const { webpackServer, findCompiler } = require('../../../../src');
 const configs = require('../../webpack.config');
 
 const app = new Koa();

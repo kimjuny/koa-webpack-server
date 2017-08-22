@@ -1,2 +1,4 @@
+/dist
+/coverage
 /node_modules
 /examples/client-and-server/node_modules

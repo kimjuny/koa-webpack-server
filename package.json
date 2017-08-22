@@ -10,12 +10,18 @@
     "react",
     "vue"
   ],
-  "main": "./index.js",
+  "main": "src/index.js",
   "scripts": {
     "build": "npm run clean && webpack --colors --progress --config webpack.config.js",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "test": "./node_modules/.bin/jest --config jest.config.json --no-cache",
+    "codecov": "codeclimate-test-reporter < coverage/lcov.info"
   },
   "devDependencies": {
+    "babel-jest": "^20.0.3",
+    "codeclimate-test-reporter": "^0.5.0",
+    "jest": "^20.0.4",
+    "koa": "^2.3.0",
     "webpack": "^3.5.4"
   },
   "dependencies": {

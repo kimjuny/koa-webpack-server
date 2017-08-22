@@ -1,0 +1,13 @@
+{
+  "notify": true,
+  "browser": false,
+  "testEnvironment": "node",
+  "collectCoverage": true,
+  "coveragePathIgnorePatterns": [
+    "<rootDir>/dist/",
+    "<rootDir>/examples/",
+    "<rootDir>/node_modules/"
+  ],
+  "coverageDirectory": "coverage",
+  "coverageReporters": ["lcov", "text-summary"]
+}

@@ -1,5 +1,7 @@
 # Koa Webpack Server
 
+[![Build Status](https://travis-ci.org/kimjuny/koa-webpack-server.svg?branch=master)](https://travis-ci.org/kimjuny/koa-webpack-server)
+
 > koa2、webpack、hmr、isomorphic、server-side-render
 
 Koa-Webpack-Server is all-in-one environment for koa2 and webpack2/3 development. This package contains three components: a koa-middleware for [webpack-dev-middleware](https://github.com/webpack/webpack-dev-middleware)、a koa-middleware for [webpack-hot-middleware](https://github.com/glenjamin/webpack-hot-middleware)、a promise-based entry for hot koa-middleware development(something like [webpack-hot-server-middleware](https://github.com/60frames/webpack-hot-server-middleware) yet more powerful).
@@ -110,7 +112,7 @@ const options = {
 
 [webpack-dev-middleware](https://github.com/webpack/webpack-dev-middleware) options.
 
-When you set `serverSideRender: true`, webpackStats is accessible from `ctx.state.webpackStats`.
+When `serverSideRender` is set to `true`, webpackStats is accessible from `ctx.state.webpackStats`.
 
 ```javascript
 app.use(async (ctx, next) => {

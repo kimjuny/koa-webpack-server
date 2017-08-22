@@ -1,0 +1,12 @@
+languages:
+  Javascript: true
+
+ratings:
+  paths:
+  - "src/**"
+
+exclude_paths:
+- "coverage/"
+- "dist/"
+- "examples/"
+- "node_modules/"

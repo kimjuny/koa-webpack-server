@@ -1,8 +1,8 @@
 'use strict';
 
 const requireFromString = require('require-from-string');
-const devMiddleware = require('./src/dev');
-const hotMiddleware = require('./src/hot');
+const devMiddleware = require('./dev');
+const hotMiddleware = require('./hot');
 
 let init = false;
 let cache;
