@@ -7,6 +7,9 @@ node_js:
 cache:
   - yarn
 script:
+  - yarn
+  - cd examples/client-and-server && yarn
+  - cd ...
   - yarn test
   - yarn codecov
 notifications:
