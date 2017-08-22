@@ -1,5 +1,5 @@
-const Koa = require('Koa');
 const webpack = require('webpack');
+const Koa = require('Koa');
 const { webpackServer, findCompiler } = require('../index.js');
 const configs = require('../../examples/client-and-server/webpack.config.js');
 
