@@ -1,6 +1,6 @@
 env:
   global:
-    - 6d71cd151df67a52bd2a5d9c6f5aaf63b4bbb33ad2da73f26bcb44f6ecf0eb04
+    - CODECLIMATE_REPO_TOKEN=6d71cd151df67a52bd2a5d9c6f5aaf63b4bbb33ad2da73f26bcb44f6ecf0eb04
 language: node_js
 node_js:
   - stable
