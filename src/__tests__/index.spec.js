@@ -4,6 +4,8 @@ const { webpackServer, findCompiler, findStats } = require('..');
 const configs = require('../../examples/client-and-server/webpack.config');
 
 describe('src/index.js test suite', () => {
+  jasmine.DEFAULT_TIMEOUT_INTERVAL = 20000;
+
   it('should start correctly', () => {
     const compilers = webpack(configs);
     const clientCompiler = findCompiler(compilers, 'client');
