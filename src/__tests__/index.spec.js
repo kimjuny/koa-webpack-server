@@ -59,7 +59,10 @@ describe('src/index.js test suite', () => {
         findStats(stats, falseName);
       }).toThrow(`No webpack stats found named '${falseName}', please check your configuration.`);
     }).then(() => {
-      // TODO: How to kill webpack-dev-server and webpack-hot-server here?
+      // TODO: A better way to kill webpack-hot-middleware
+      setInterval(() => {
+        process.exit();
+      }, 2000);
     });
   });
 });
