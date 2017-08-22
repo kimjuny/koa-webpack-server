@@ -3,6 +3,9 @@ import { renderToString } from 'react-dom/server';
 import App from '../client/App';
 import _ from 'lodash';
 
+// this file is webpack server-side config entry.
+// just export all your async middlewares in this file.
+
 export const logger = async (ctx, next) => {
   const start = new Date();
   await next();
