@@ -1,7 +1,6 @@
 # Koa Webpack Server
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/kimjuny/koa-webpack-server.svg)](https://greenkeeper.io/)
-
 [![Build Status](https://travis-ci.org/kimjuny/koa-webpack-server.svg?branch=master)](https://travis-ci.org/kimjuny/koa-webpack-server)
 [![Downloads](https://img.shields.io/npm/dt/koa-webpack-server.svg)](https://www.npmjs.com/package/koa-webpack-server)
 [![Code Climate](https://codeclimate.com/github/kimjuny/koa-webpack-server/badges/gpa.svg)](https://codeclimate.com/github/kimjuny/koa-webpack-server)
