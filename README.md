@@ -9,7 +9,12 @@
 
 > koa2、webpack、hmr、isomorphic、server-side-render
 
-Koa-Webpack-Server is all-in-one environment for koa2 and webpack2/3 development. This package contains three components: a koa-middleware for [webpack-dev-middleware](https://github.com/webpack/webpack-dev-middleware)、a koa-middleware for [webpack-hot-middleware](https://github.com/glenjamin/webpack-hot-middleware)、a promise-based entry for hot koa-middleware development(something like [webpack-hot-server-middleware](https://github.com/60frames/webpack-hot-server-middleware) yet more powerful).
+Koa-Webpack-Server is all-in-one environment for koa2 and webpack2/3 development. 
+
+* Autowire your koa2 app with [webpack-dev-middleware](https://github.com/webpack/webpack-dev-middleware).
+* Autowire your koa2 app with [webpack-hot-middleware](https://github.com/glenjamin/webpack-hot-middleware).
+* Autowire your koa2 app with middlewares which are declared as `entry` point in your webpack server side config.
+* HMR for client side and server side code, which means you'll never need to restart your node server or refresh your browser to see the changes.
 
 This package is usually used to build a universal/isomorphic SPA applications(React、Vue、Angular) using koa and webpack as setback, making universal/isomorphic web-app development super easy.
 
