@@ -1,6 +1,6 @@
 {
   "name": "koa-webpack-server",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "koa2 webpack hmr development server",
   "keywords": [
     "koa",
@@ -35,8 +35,8 @@
   },
   "dependencies": {
     "require-from-string": "^2.0.0",
-    "webpack-dev-middleware": "^1.12.0",
-    "webpack-hot-middleware": "^2.18.2"
+    "webpack-dev-middleware": "^2.0.2",
+    "webpack-hot-middleware": "^2.25.0"
   },
   "author": "Eric Kim",
   "git": "https://github.com/kimjuny/koa-webpack-server.git",
